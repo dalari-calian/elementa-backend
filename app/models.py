@@ -1,6 +1,6 @@
 from app import db
 
-class Player(db.Model): # cria o modelo de objeto para db
+class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     hp = db.Column(db.Integer)
     attack = db.Column(db.Integer)
@@ -8,7 +8,7 @@ class Player(db.Model): # cria o modelo de objeto para db
     money = db.Column(db.Float)
     xp = db.Column(db.Float)
 
-    # converte o objeto para um dicionário
+ 
     def to_dict(self):
         return {
             'id': self.id,
@@ -19,13 +19,13 @@ class Player(db.Model): # cria o modelo de objeto para db
             'xp': self.xp
         }
 
-class Enemy(db.Model): # cria o modelo de objeto para db
+class Enemy(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     hp = db.Column(db.Integer)
     attack = db.Column(db.Integer)
     current_area = db.Column(db.Integer)
 
-    # converte o objeto para um dicionário
+ 
     def to_dict(self):
         return {
             'id': self.id,
@@ -34,7 +34,7 @@ class Enemy(db.Model): # cria o modelo de objeto para db
             'current_area': self.current_area
         }
 
-class Boss(db.Model): # cria o modelo de objeto para db
+class Boss(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     hp = db.Column(db.Integer)
     attack = db.Column(db.Integer)
@@ -42,7 +42,7 @@ class Boss(db.Model): # cria o modelo de objeto para db
     attemps = db.Column(db.Integer)
     defeat = db.Column(db.Boolean)
 
-    # converte o objeto para um dicionário
+    
     def to_dict(self):
         return {
             'id': self.id,

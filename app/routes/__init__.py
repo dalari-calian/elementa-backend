@@ -5,3 +5,5 @@ bp = Blueprint('main', __name__)
 
 # encapsulando as rotas
 from app.routes import players
+from app.routes import combat
+from app.routes import achievements

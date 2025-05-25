@@ -1,25 +1,24 @@
-#pip install Flask-Migrate
+
 from flask import Flask, jsonify
 from flask_migrate import Migrate
 from config import Config
 from app.db import db
 from app.auth import auth_bp, token_required
 
-# é uma lib responsavel por atualizar as tabela do banco de dados
-# conforme os objetos criados
+
 migrate = Migrate()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # secret key da aplicação
+
     app.config['SECRET_KEY'] = 'your secret key'
 
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # importa as rotas que foram criadas
+
     from app.routes import bp as routes_bp
     app.register_blueprint(routes_bp)
 

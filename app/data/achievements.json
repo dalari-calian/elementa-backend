@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Primeiro Passo",
+        "description": "Derrote seu primeiro inimigo",
+        "reward_xp": 20,
+        "reward_money": 10,
+        "icon": "first_step.png",
+        "area_required": 1,
+        "enemies_defeated_required": 1,
+        "bosses_defeated_required": 0
+    },
+    {
+        "id": 2,
+        "name": "Exterminador",
+        "description": "Derrote 10 inimigos",
+        "reward_xp": 50,
+        "reward_money": 25,
+        "icon": "exterminator.png",
+        "area_required": 1,
+        "enemies_defeated_required": 10,
+        "bosses_defeated_required": 0
+    },
+    {
+        "id": 3,
+        "name": "Ca\u00e7ador de Chefes",
+        "description": "Derrote seu primeiro chefe",
+        "reward_xp": 100,
+        "reward_money": 50,
+        "icon": "boss_hunter.png",
+        "area_required": 1,
+        "enemies_defeated_required": 0,
+        "bosses_defeated_required": 1
+    },
+    {
+        "id": 4,
+        "name": "Aventureiro",
+        "description": "Alcance a \u00e1rea 2",
+        "reward_xp": 150,
+        "reward_money": 75,
+        "icon": "adventurer.png",
+        "area_required": 2,
+        "enemies_defeated_required": 0,
+        "bosses_defeated_required": 0
+    },
+    {
+        "id": 5,
+        "name": "Mestre das L\u00e2minas",
+        "description": "Alcance 20 de ataque",
+        "reward_xp": 200,
+        "reward_money": 100,
+        "icon": "blade_master.png",
+        "attack_required": 20,
+        "area_required": 1,
+        "enemies_defeated_required": 0,
+        "bosses_defeated_required": 0
+    }
+]

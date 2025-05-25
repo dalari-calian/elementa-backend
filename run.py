@@ -1,5 +1,6 @@
 from app import create_app, db
-from app.models import Player
+from app.models import Player, Enemy, Boss
+from app.routes.achievements import PlayerAchievement
 
 # cria a instância do aplicativo
 app = create_app()
@@ -8,7 +9,13 @@ app = create_app()
 def make_shell_context():
     # pode executar comandos shell durante a execução
     # do app
-    return { 'db': db, 'Player': Player }
+    return { 
+        'db': db, 
+        'Player': Player, 
+        'Enemy': Enemy, 
+        'Boss': Boss, 
+        'PlayerAchievement': PlayerAchievement 
+    }
 
 
 # flask db init >> executa a primeira vez

@@ -47,3 +47,27 @@ def create_player(current_user):
         return jsonify(player.to_dict()), 201 # sucesso na criação
     except Exception as e:
         return jsonify({'error': str(e)}), 500 # erro de servidor
+        
+@bp.route('/players/<int:player_id>', methods=['PUT'])
+@token_required
+def update_player(current_user, player_id):
+    try:
+        player = Player.query.get_or_404(player_id)
+        data = request.get_json() or {}
+        
+ 
+        if 'hp' in data:
+            player.hp = data['hp']
+        if 'attack' in data:
+            player.attack = data['attack']
+        if 'current_area' in data:
+            player.current_area = data['current_area']
+        if 'money' in data:
+            player.money = data['money']
+        if 'xp' in data:
+            player.xp = data['xp']
+            
+        db.session.commit()
+        return jsonify(player.to_dict()), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
