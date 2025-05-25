@@ -34,11 +34,7 @@ def create_player(current_user):
         # recuperar o conteudo do json
         data = request.get_json() or {}
 
-        #if 'username' not in data or 'password'  not in data:
-        #    return jsonify({'error': 'Username and Password are required'})
-        #if Player.query.filter_by(email=data['email']).first():
-        # if Player.query.filter_by(email="andrei.carniel@catolicasc.com.br").first():
-        #    return jsonify({'error': 'Email already exists'})
+     
 
         player = Player(hp=200, attack=10, current_area=1, money=0, xp=0)
         db.session.add(player)
