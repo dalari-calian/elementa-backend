@@ -7,13 +7,13 @@ import json
 import os
 from datetime import datetime
 
-# Constantes para configuração do sistema de conquistas
+
 ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'achievements.json')
 
-# Definição de diretório para dados se não existir
+
 os.makedirs(os.path.dirname(ACHIEVEMENTS_FILE), exist_ok=True)
 
-# Verifica se o arquivo de conquistas existe e cria se não existir
+
 if not os.path.exists(ACHIEVEMENTS_FILE):
     default_achievements = [
         {
@@ -74,19 +74,19 @@ if not os.path.exists(ACHIEVEMENTS_FILE):
         }
     ]
     
-    # Salva as conquistas padrão
+
     os.makedirs(os.path.dirname(ACHIEVEMENTS_FILE), exist_ok=True)
     with open(ACHIEVEMENTS_FILE, 'w') as f:
         json.dump(default_achievements, f, indent=4)
 
-# Cria uma tabela de conquistas do jogador no banco de dados se não existir
+
 class PlayerAchievement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
     achievement_id = db.Column(db.Integer)
     unlocked_at = db.Column(db.DateTime, default=datetime.utcnow)
     
-    # Definição do índice único para evitar duplicatas
+   
     __table_args__ = (
         db.UniqueConstraint('player_id', 'achievement_id', name='_player_achievement_uc'),
     )
@@ -135,7 +135,7 @@ def get_player_achievements(current_user, player_id):
         
         for achievement in all_achievements:
             if achievement['id'] in achievement_ids:
-                # Encontra a data de desbloqueio
+           
                 unlock_date = next((pa.unlocked_at for pa in player_achievements if pa.achievement_id == achievement['id']), None)
                 achievement_copy = achievement.copy()
                 achievement_copy['unlocked'] = True
@@ -163,42 +163,42 @@ def check_achievements(current_user, player_id):
     try:
         player = Player.query.get_or_404(player_id)
         
-        # Dados adicionais para verificar conquistas
+       
         data = request.get_json() or {}
         enemies_defeated = data.get('enemies_defeated', 0)
         bosses_defeated = data.get('bosses_defeated', 0)
         
-        # Carrega todas as conquistas
+       
         all_achievements = load_achievements()
         
-        # Busca as conquistas já desbloqueadas pelo jogador
+      
         unlocked_achievements = PlayerAchievement.query.filter_by(player_id=player_id).all()
         unlocked_ids = [ua.achievement_id for ua in unlocked_achievements]
         
         newly_unlocked = []
         
-        # Verifica cada conquista
+  
         for achievement in all_achievements:
             if achievement['id'] not in unlocked_ids:
                 requirements_met = True
                 
-                # Verifica requisitos de área
+              
                 if 'area_required' in achievement and player.current_area < achievement['area_required']:
                     requirements_met = False
                     
-                # Verifica requisitos de ataque
+                
                 if 'attack_required' in achievement and player.attack < achievement['attack_required']:
                     requirements_met = False
                     
-                # Verifica requisitos de inimigos derrotados
+                
                 if 'enemies_defeated_required' in achievement and enemies_defeated < achievement['enemies_defeated_required']:
                     requirements_met = False
                     
-                # Verifica requisitos de chefes derrotados
+                
                 if 'bosses_defeated_required' in achievement and bosses_defeated < achievement['bosses_defeated_required']:
                     requirements_met = False
                     
-                # Se todos os requisitos foram atendidos, desbloqueia a conquista
+               
                 if requirements_met:
                     new_achievement = PlayerAchievement(
                         player_id=player_id,
@@ -207,7 +207,7 @@ def check_achievements(current_user, player_id):
                     )
                     db.session.add(new_achievement)
                     
-                    # Aplica recompensas
+              
                     if 'reward_xp' in achievement:
                         player.xp += achievement['reward_xp']
                     if 'reward_money' in achievement:
@@ -221,7 +221,7 @@ def check_achievements(current_user, player_id):
                         }
                     })
         
-        # Salva as alterações no banco de dados
+   
         db.session.commit()
         
         return jsonify({
