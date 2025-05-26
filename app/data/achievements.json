@@ -23,7 +23,7 @@
     },
     {
         "id": 3,
-        "name": "Ca\u00e7ador de Chefes",
+        "name": "Cacador de Chefes",
         "description": "Derrote seu primeiro chefe",
         "reward_xp": 100,
         "reward_money": 50,
@@ -35,7 +35,7 @@
     {
         "id": 4,
         "name": "Aventureiro",
-        "description": "Alcance a \u00e1rea 2",
+        "description": "Alcance a area 2",
         "reward_xp": 150,
         "reward_money": 75,
         "icon": "adventurer.png",
@@ -45,7 +45,7 @@
     },
     {
         "id": 5,
-        "name": "Mestre das L\u00e2minas",
+        "name": "Mestre das Laminas",
         "description": "Alcance 20 de ataque",
         "reward_xp": 200,
         "reward_money": 100,
